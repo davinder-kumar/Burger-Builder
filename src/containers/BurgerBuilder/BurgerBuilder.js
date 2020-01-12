@@ -4,20 +4,10 @@ import Burger from '../../components/Burger/Burger'
 import BuilderControls from '../../components/Burger/BuildControls/BuildControls'
 import Modal from '../../components/UI/Modal/Modal'
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary'
-const INGREDEINTS_PRICE = {
-    meat: 1.3,
-    bacon: 0.7,
-    cheese: 0.5,
-    salad: 0.3
-}
+const INGREDEINTS_PRICE = { meat: 1.3, bacon: 0.7, cheese: 0.5, salad: 0.3 }
 class BurgerBuilder extends Component {
     state = {
-        ingredients: {
-            meat: 0,
-            bacon: 0,
-            cheese: 0,
-            salad: 0
-        },
+        ingredients: { meat: 0, bacon: 0, cheese: 0, salad: 0 },
         price: 4.0,
         isPurchasable: false,
         purchasing: false
@@ -86,7 +76,7 @@ class BurgerBuilder extends Component {
                     disabledInfo={disabledInfo}
                     price={this.state.price}
                     isPurchasable={this.state.isPurchasable}
-                    purchasing ={this.purchaseHandler}
+                    purchasing={this.purchaseHandler}
                 />
 
             </Aux>
