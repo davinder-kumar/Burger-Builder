@@ -5,7 +5,7 @@ const orderSummary = (props) => {
     const ingredients = Object.keys(props.ingredients)
         .map(keyIng => {
             return <li key={keyIng}>
-                <span style={{ textTransform: 'capitalize' }}>{keyIng} : </span>
+                <span style={{textTransform:'capitalize'}}>{keyIng} : </span>
                 {props.ingredients[keyIng]}
             </li>
         })
@@ -17,7 +17,7 @@ const orderSummary = (props) => {
             <ul>
                 {ingredients}
             </ul>
-            <p><strong>Total Price: {props.price.toFixed(2)}</strong></p>
+    <p><strong>Total Price: {}</strong></p>
             <p>Continue to checkout ?</p>
             <Button clicked={props.purchaseCancelled} btnType="Danger">Cancel</Button>
             <Button clicked={props.purchaseContinued} btnType="Success">Continue</Button>
