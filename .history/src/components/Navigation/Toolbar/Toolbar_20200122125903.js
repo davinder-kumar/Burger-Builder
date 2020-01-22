@@ -6,7 +6,7 @@ const toolbar = () => {
     return (
         <header className={classes.Toolbar}>
             <div>MENU</div>
-            <div className={classes.Logo}>
+            <div>
                 <BurgerLogo />
             </div>
             <nav>

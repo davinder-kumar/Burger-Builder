@@ -6,9 +6,8 @@ const toolbar = () => {
     return (
         <header className={classes.Toolbar}>
             <div>MENU</div>
-            <div className={classes.Logo}>
-                <BurgerLogo />
-            </div>
+            <div>
+            <BurgerLogo />
             <nav>
                 <NavigationItems />
             </nav>

@@ -3,16 +3,12 @@ import Logo from '../../Logo/Logo'
 import NavigationItems from '../Navigationitems/Navigationitems'
 import classes from './SideDrawer.module.css'
 import Backdrop from '../../UI/Backdrop/Backdrop'
-import Aux from '../../../hoc/Auxiliry'
-const SideDrawer = (props) => {
-    let attachedClasses = [classes.SideDrawer,classes.Close]
-    if(props.show){
-         attachedClasses = [classes.SideDrawer,classes.Open]
-    }
+import Aux from '../../'
+const SideDrawer = () => {
     return (
         <Aux>
-            <Backdrop show={props.show} clicked={props.click} />
-            <div className={attachedClasses.join(" ")}>
+            <Backdrop />
+            <div className={classes.SideDrawer}>
                 <div className={classes.Logo}>
                     <Logo />
                 </div>
