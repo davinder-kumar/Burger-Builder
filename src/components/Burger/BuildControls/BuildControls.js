@@ -7,6 +7,7 @@ const controls =[
     {label: 'Meat', type:'meat'},
     {label: 'Bacon', type:'bacon'},
     {label: 'Cheese', type:'cheese'},
+    {label: 'Paneer', type:'paneer'}
 ]
 
 const BuildControls = props => (

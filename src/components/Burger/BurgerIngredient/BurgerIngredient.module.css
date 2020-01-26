@@ -97,6 +97,14 @@
     border-radius: 20px;
 }
 
+.Paneer {
+  width: 85%;
+  height: 4.5%;
+  margin: 2% auto;
+  background: linear-gradient(#FFFCE4, #a8a0a0);
+  border-radius: 20px;
+}
+
 .Salad {
     width: 85%;
     height: 7%;
