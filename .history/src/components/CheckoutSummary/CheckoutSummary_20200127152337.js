@@ -1,0 +1,3 @@
+import checkoutSummary = (props) => {
+    
+}
