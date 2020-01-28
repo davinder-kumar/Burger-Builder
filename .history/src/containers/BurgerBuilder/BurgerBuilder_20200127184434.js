@@ -9,7 +9,7 @@ import Spinner from '../../components/UI/Spinner/Spinner'
 import WithErrorHandler from '../../hoc/WithErrorHandler/WithErrorHandler'
 const INGREDEINTS_PRICE = { meat: 1.3, bacon: 0.7, cheese: 0.5, salad: 0.3, paneer: 1.0 }
 class BurgerBuilder extends Component {
-    state = {
+    exstate = {
         ingredients: null,
         price: 4.0,
         isPurchasable: false,
@@ -115,18 +115,7 @@ class BurgerBuilder extends Component {
         //             loading: false, purchasing: false
         //         })
         //     })
-        const ingrediants = this.state.ingredients
-        const params = []
-        for (var key in ingrediants) {
-
-            params.push(encodeURIComponent(key) + "=" + encodeURIComponent(ingrediants[key]))
-        }
-        const urlParams = params.join("&");
-
-        this.props.history.push({
-            pathname: "/checkout",
-            search: urlParams
-        });
+        this.props.history.push("/checkout");
     }
 
     render() {

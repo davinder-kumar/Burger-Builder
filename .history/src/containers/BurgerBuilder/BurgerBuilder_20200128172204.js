@@ -118,15 +118,10 @@ class BurgerBuilder extends Component {
         const ingrediants = this.state.ingredients
         const params = []
         for (var key in ingrediants) {
-
-            params.push(encodeURIComponent(key) + "=" + encodeURIComponent(ingrediants[key]))
+            console.log(key, ingrediants[key]);
+            params.push( encodeURIComponent(key) )
         }
-        const urlParams = params.join("&");
-
-        this.props.history.push({
-            pathname: "/checkout",
-            search: urlParams
-        });
+        // this.props.history.push("/checkout");
     }
 
     render() {

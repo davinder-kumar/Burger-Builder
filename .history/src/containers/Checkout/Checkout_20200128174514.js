@@ -8,24 +8,17 @@ class Checkout extends Component{
             cheese :2
         }
     }
-    componentWillMount(){
-        let query = new URLSearchParams(this.props.location.search)
-        for(let i in query.entries()){
-            
-        }
-        // const FinalParam = {}
-        // for(let i in params){
-        //     if(params[i] > 0){
-        //         FinalParam[i] = parseInt(params[i])
-        //     }
-        // }
-        // this.setState({
-        //     ingredients : FinalParam
-        // })
 
+    componentWillMount(){
+        let params = decodeURIComponent(this.props.location.search)
+        params = new URLSearchParams(params);
+
+        Object.fromEntries(new URLSearchParams('abc=foo&def=%5Basf%5D&xyz=5'))
+
+        params = params.get('bacon')
+        console.log(params)
     }
     render(){
-        // console.log(this.state.ingredients)
         return (
             <div>
                 <CheckoutSummary ingredients={this.state.ingredients} />
