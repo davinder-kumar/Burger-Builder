@@ -13,11 +13,17 @@ class Checkout extends Component {
         })
 
     }
+    cancelHandler = () => {
+        this.props.history.goBack()
+    }
+    successHandler = () =>{
+        alert()
+    }
     render() {
         // console.log(this.state.ingredients)
         return (
             <div>
-                <CheckoutSummary ingredients={this.state.ingredients} />
+                <CheckoutSummary clickCancel={this.cancelHandler} clickSuccess={this.successHandler} ingredients={this.state.ingredients} />
             </div>
         )
     }
