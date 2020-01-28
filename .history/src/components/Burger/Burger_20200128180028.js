@@ -9,14 +9,14 @@ const burger = props => {
                 return <BurgerIngredient key={keyIng + index} type={keyIng} />
             });
         })
-        .reduce((prev, curr) => {
-            return prev.concat(curr)
-        }, []);
+        // .reduce((prev, curr) => {
+        //     return prev.concat(curr)
+        // }, []);
 
         if(transformeding.length === 0){
             transformeding=<div>Please add some ingredients!</div>
         }
-        
+        console.log(transformeding)
     return (
         <div className={classes.Burger}>
             <BurgerIngredient type="bread-top" />

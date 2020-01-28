@@ -1,19 +1,23 @@
 import React, { Component } from 'react'
 import CheckoutSummary from '../../components/CheckoutSummary/CheckoutSummary'
-class Checkout extends Component {
+class Checkout extends Component{
 
-    componentWillMount() {
-        let query = new URLSearchParams(this.props.location.search)
+    componentWillMount(){
+        let params = decodeURIComponent(this.props.location.search)
+
+        params = Object.fromEntries(new URLSearchParams(params))
         const FinalParam = {}
-        for (let i of query) {
-            FinalParam[i[0]] = parseInt(i[1])
+        for(let i in params){
+            if(params[i] > 0){
+                FinalParam.i = params[i]
+            }
         }
         this.setState({
-            ingredients: FinalParam
+            ingredients : params
         })
 
     }
-    render() {
+    render(){
         // console.log(this.state.ingredients)
         return (
             <div>
