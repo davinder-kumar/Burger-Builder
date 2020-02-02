@@ -5,12 +5,10 @@ import axois from '../../../axios-orders'
 import Spinner from '../../../components/UI/Spinner/Spinner'
 import Input from '../../../components/UI/Forms/Input/Input'
 import Witherror from '../../../hoc/WithErrorHandler/WithErrorHandler'
-
+import { connect } from 'react-redux'
 class ContactData extends Component {
     state = {
         loading: false,
-        ingredients: null,
-        price: null,
         isFormValid: false,
         orderForm: {
             name: {
@@ -94,13 +92,8 @@ class ContactData extends Component {
                 validation: {},
                 isValid: true
             },
-
-
         }
-
-
     }
-
     orderHandler = (event) => {
         event.preventDefault()
         this.setState({
@@ -123,7 +116,7 @@ class ContactData extends Component {
                 this.setState({
                     loading: false
                 })
-                this.props.replace("/");
+                this.props.history.replace("/");
             })
             .catch(error => {
                 this.setState({
@@ -205,4 +198,14 @@ class ContactData extends Component {
         );
     }
 }
-export default Witherror(ContactData, axois)
+
+const mapStateToProps =(state) =>{
+    return{
+        ingredients : state.ingredients,
+        price : state.price
+    }
+}
+
+// export default connect(mapStateToProps)(Checkout)
+
+export default connect(mapStateToProps)(Witherror(ContactData, axois))
