@@ -15,10 +15,12 @@ class Orders extends Component {
             .then((res) => {
                 const orders = []
                 for (let i in res.data) {
+                     console.log(res.data[i])
                     orders.push({
                         ingredients: res.data[i].ingredients,
                         id: i,
-                        price: res.data[i].price
+                        price: res.data[i].price,
+                        name : res.data[i].orderData.name
                     })
                 }
 
@@ -35,7 +37,7 @@ class Orders extends Component {
     }
     render() {
         let orderss = this.state.orders.map(order => (
-            <Order ingredients={order.ingredients} key={order.id} price={order.price} />
+            <Order ingredients={order.ingredients} key={order.id} name={order.name} price={order.price} />
         ))
         if (this.state.loading) {
             orderss = <Spinner />

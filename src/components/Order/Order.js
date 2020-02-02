@@ -23,6 +23,7 @@ const Order = (props) => {
 
     return (
         <div className={classes.Order}>
+            <p>Name : <strong>{props.name}</strong></p>
             <p>Ingrediants : {ingOutput}</p>
             <p>Price : <strong>USD {Number.parseFloat(props.price).toFixed(2)}</strong></p>
         </div>

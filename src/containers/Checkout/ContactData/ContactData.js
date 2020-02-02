@@ -116,7 +116,8 @@ class ContactData extends Component {
                 this.setState({
                     loading: false
                 })
-                this.props.history.replace("/");
+                // this.props.history.replace("/");
+                window.location ='/'
             })
             .catch(error => {
                 this.setState({
