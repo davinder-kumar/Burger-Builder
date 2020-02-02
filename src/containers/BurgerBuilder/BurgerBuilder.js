@@ -9,10 +9,8 @@ import Spinner from '../../components/UI/Spinner/Spinner'
 import WithErrorHandler from '../../hoc/WithErrorHandler/WithErrorHandler'
 import { connect } from 'react-redux'
 import * as actionsList from '../../redux-store/actions'
-const INGREDEINTS_PRICE = { meat: 1.3, bacon: 0.7, cheese: 0.5, salad: 0.3, paneer: 1.0 }
 class BurgerBuilder extends Component {
     state = {
-        price: 4.0,
         isPurchasable: false,
         purchasing: false,
         loading: false,
@@ -32,33 +30,10 @@ class BurgerBuilder extends Component {
         //     })
     }
 
-    // addIngredientHandler = type => {
-    //     const updatedIng = { ...this.state.ingredients }
-    //     const newPrice = this.state.price + INGREDEINTS_PRICE[type];
-    //     updatedIng[type] = updatedIng[type] + 1;
-    //     this.setState((prevState, props) => {
-    //         return {
-    //             price: newPrice,
-    //             ingredients: updatedIng
-    //         }
-    //     }, this.updatePurchaseState)
-
-    // }
-
-    // removeIngredientHandler = type => {
-    //     const updatedIngs = { ...this.state.ingredients }
-    //     const updatedPrice = this.state.price - INGREDEINTS_PRICE[type]
-    //     updatedIngs[type] = updatedIngs[type] - 1;
-    //     this.setState({
-    //         ingredients: updatedIngs, price: updatedPrice
-    //     }, this.updatePurchaseState)
-
-    // }
-
     purchaseHandler = () => {
         this.setState({ purchasing: true })
     }
-
+ 
     updatePurchaseState = () => {
         const Ingredients = {
             ...this.props.ingredients
@@ -69,15 +44,7 @@ class BurgerBuilder extends Component {
         }).reduce((prevVal, newVal) => {
             return prevVal + newVal
         }, 0)
-        if (IngCount > 0) {
-            this.setState({
-                isPurchasable: true
-            })
-        } else {
-            this.setState({
-                isPurchasable: false
-            })
-        }
+        return IngCount > 0
     }
     purchaseCancelHandler = () => {
         this.setState({
@@ -85,8 +52,6 @@ class BurgerBuilder extends Component {
         })
     }
     purchaseContinueHandler = () => {
-
-
         const ingrediants = this.props.ingredients
         const params = []
         for (var key in ingrediants) {
@@ -118,8 +83,8 @@ class BurgerBuilder extends Component {
                         IngredientAdd={this.props.addIngrediant}
                         removeIng={this.props.removeIngrediant}
                         disabledInfo={disabledInfo}
-                        price={this.state.price}
-                        isPurchasable={this.state.isPurchasable}
+                        price={this.props.price}
+                        isPurchasable={this.updatePurchaseState()}
                         purchasing={this.purchaseHandler}
                     />
                 </Aux>
@@ -129,12 +94,10 @@ class BurgerBuilder extends Component {
                     purchaseCancelled={this.purchaseCancelHandler}
                     purchaseContinued={this.purchaseContinueHandler}
                     ingredients={this.props.ingredients}
-                    price={this.state.price}
+                    price={this.props.price}
                 />
             )
         }
-
-
 
         if (this.state.loading) {
             orderSummry = <Spinner />
@@ -153,12 +116,13 @@ class BurgerBuilder extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        ingredients: state.ingredients
+        ingredients: state.ingredients,
+        price: state.price,
     }
 }
 const mapDispatchToProps = (dispatch) => ({
     addIngrediant: (ingType) => dispatch({ type: actionsList.ADD_INGREDIANT, ingType: ingType }),
-    removeIngrediant: (ingType) => dispatch({ type: actionsList.REMOVE_INGREDIANT, ingType:ingType })
+    removeIngrediant: (ingType) => dispatch({ type: actionsList.REMOVE_INGREDIANT, ingType: ingType })
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(WithErrorHandler(BurgerBuilder, axois)) 
