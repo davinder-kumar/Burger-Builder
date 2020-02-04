@@ -29,7 +29,7 @@ const burgerReducer = (state = initState, action) => {
                     ...state.ingredients,
                     [action.ingType]: state.ingredients[action.ingType] - 1
                 },
-                price: state.price - INGREDEINTS_PRICE[action.ingType]
+                price: state.price + INGREDEINTS_PRICE[action.ingType]
             }
 
         default:

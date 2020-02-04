@@ -9,8 +9,8 @@ import reducer from './redux-store/reducers/burger-reducer'
 import * as serviceWorker from './serviceWorker';
 
 const logger = store =>{
-    return next=> {
-        return action => {
+    return  next=> {
+        return next => {
             console.log("[Middleware] Dispatching")
             const result = next(action)
             const state = store.getState()
