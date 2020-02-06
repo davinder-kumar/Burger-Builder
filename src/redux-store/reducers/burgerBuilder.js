@@ -1,4 +1,4 @@
-import * as actionsList from '../actions'
+import * as actionsList from '../actions/actionTypes'
 const INGREDEINTS_PRICE = { meat: 1.3, bacon: 0.7, cheese: 0.5, salad: 0.3, paneer: 1.0 }
 const initState = {
     ingredients: {

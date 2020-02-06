@@ -8,7 +8,8 @@ import axois from '../../axios-orders'
 import Spinner from '../../components/UI/Spinner/Spinner'
 import WithErrorHandler from '../../hoc/WithErrorHandler/WithErrorHandler'
 import { connect } from 'react-redux'
-import * as actionsList from '../../redux-store/actions'
+// import * as actionsList from '../../redux-store/actions/actionTypes'
+import { addIngrediant, removeIngredient } from '../../redux-store/actions/index'
 class BurgerBuilder extends Component {
     state = {
         isPurchasable: false,
@@ -33,7 +34,7 @@ class BurgerBuilder extends Component {
     purchaseHandler = () => {
         this.setState({ purchasing: true })
     }
- 
+
     updatePurchaseState = () => {
         const Ingredients = {
             ...this.props.ingredients
@@ -93,7 +94,9 @@ class BurgerBuilder extends Component {
 
         return (
             <Aux>
-                <Modal loading={this.state.loading} show={this.state.purchasing} modelClosed={this.purchaseCancelHandler}>
+                <Modal loading={this.state.loading}
+                    show={this.state.purchasing}
+                    modelClosed={this.purchaseCancelHandler}>
                     {orderSummry}
                 </Modal>
                 {burger}
@@ -109,8 +112,8 @@ const mapStateToProps = (state) => {
     }
 }
 const mapDispatchToProps = (dispatch) => ({
-    addIngrediant: (ingType) => dispatch({ type: actionsList.ADD_INGREDIANT, ingType: ingType }),
-    removeIngrediant: (ingType) => dispatch({ type: actionsList.REMOVE_INGREDIANT, ingType: ingType })
+    addIngrediant: (ingType) => dispatch(addIngrediant(ingType)),
+    removeIngrediant: (ingType) => dispatch(removeIngredient(ingType))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(WithErrorHandler(BurgerBuilder, axois)) 
