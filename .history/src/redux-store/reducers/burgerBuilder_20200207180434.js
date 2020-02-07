@@ -26,12 +26,7 @@ const burgerReducer = (state = initState, action) => {
                 price: state.price - INGREDEINTS_PRICE[action.ingType]
             }
 
-            case (actionsList.INIT_INGREDIENTS): 
-            console.log(action,"action")
-            return {
-                ...state,
-                ingredients : action.ings
-            }
+            case 
 
         default:
             return state

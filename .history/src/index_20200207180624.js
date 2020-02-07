@@ -12,10 +12,10 @@ import * as serviceWorker from './serviceWorker';
 const logger = store =>{
     return next=> {
         return action => {
-            console.log("[Middleware] Dispatching","logger")
+            console.log("[Middleware] Dispatching")
             const result = next(action)
             const state = store.getState()
-            console.log(state,"logger")
+            console.log(state)
             return result
         }
     }

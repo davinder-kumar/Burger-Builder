@@ -1,5 +1,4 @@
 import * as actionTypes from './actionTypes'
-import axois from '../../axios-orders'
 
 export const addIngrediant = (ingType) => {
     return {
@@ -31,6 +30,6 @@ export const initIngredients = () =>{
 }
 export const initIngredientsRef = (ings) => {
     return {
-        type: actionTypes.INIT_INGREDIENTS, ings : ings
+        type: actionTypes.INIT_INGREDIENTS
     }
 }

@@ -1,5 +1,4 @@
 import * as actionTypes from './actionTypes'
-import axois from '../../axios-orders'
 
 export const addIngrediant = (ingType) => {
     return {

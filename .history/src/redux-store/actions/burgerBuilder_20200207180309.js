@@ -1,5 +1,4 @@
 import * as actionTypes from './actionTypes'
-import axois from '../../axios-orders'
 
 export const addIngrediant = (ingType) => {
     return {
@@ -21,16 +20,16 @@ export const initIngredients = () =>{
             .then(response => {
                 dispatch(initIngredientsRef(response.data))
             }).catch(error => {
-                // this.setState({
-                //     isError: true
-                // })
+                this.setState({
+                    isError: true
+                })
             })
 
         
     }
 }
-export const initIngredientsRef = (ings) => {
+export const initIngredientsRef = () => {
     return {
-        type: actionTypes.INIT_INGREDIENTS, ings : ings
+        type: actionTypes.INIT_INGREDIENTS
     }
 }

@@ -9,7 +9,7 @@ import Spinner from '../../components/UI/Spinner/Spinner'
 import WithErrorHandler from '../../hoc/WithErrorHandler/WithErrorHandler'
 import { connect } from 'react-redux'
 // import * as actionsList from '../../redux-store/actions/actionTypes'
-import { addIngrediant, removeIngredient, initIngredients } from '../../redux-store/actions/index'
+import { addIngrediant, removeIngredient } from '../../redux-store/actions/index'
 class BurgerBuilder extends Component {
     state = {
         isPurchasable: false,
@@ -19,7 +19,7 @@ class BurgerBuilder extends Component {
     }
 
     componentDidMount() {
-        this.props.initIngredients();
+        this.
         // axois.get("/ingrediants.json")
         //     .then(response => {
         //         this.setState({
@@ -114,8 +114,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => ({
     addIngrediant: (ingType) => dispatch(addIngrediant(ingType)),
-    removeIngrediant: (ingType) => dispatch(removeIngredient(ingType)),
-    initIngredients: () => dispatch(initIngredients())
+    removeIngrediant: (ingType) => dispatch(removeIngredient(ingType))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(WithErrorHandler(BurgerBuilder, axois)) 

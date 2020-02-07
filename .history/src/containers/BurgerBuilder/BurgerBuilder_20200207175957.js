@@ -9,7 +9,7 @@ import Spinner from '../../components/UI/Spinner/Spinner'
 import WithErrorHandler from '../../hoc/WithErrorHandler/WithErrorHandler'
 import { connect } from 'react-redux'
 // import * as actionsList from '../../redux-store/actions/actionTypes'
-import { addIngrediant, removeIngredient, initIngredients } from '../../redux-store/actions/index'
+import { addIngrediant, removeIngredient } from '../../redux-store/actions/index'
 class BurgerBuilder extends Component {
     state = {
         isPurchasable: false,
