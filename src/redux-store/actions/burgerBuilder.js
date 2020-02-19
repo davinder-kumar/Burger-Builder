@@ -29,10 +29,11 @@ export const initIngredients = () => {
 }
 export const initIngredientsRef = (ings) => {
     return {
-        type: actionTypes.INIT_INGREDIENTS, ings: ings
+        type: actionTypes.INIT_INGREDIENTS,
+        ings: ings
     }
 }
-export const initIngredientsFailed =() =>{
+export const initIngredientsFailed = () => {
     return {
         type: actionTypes.INIT_INGREDIENTS_FAILED
     }
