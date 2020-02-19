@@ -15,7 +15,7 @@ class BurgerBuilder extends Component {
         isPurchasable: false,
         purchasing: false,
         loading: false,
-        isError: false
+        
     }
 
     componentDidMount() {
@@ -63,7 +63,7 @@ class BurgerBuilder extends Component {
             disabledInfo[key] = disabledInfo[key] <= 0
         }
 
-        let burger = this.state.isError ? "Aplication is broken somehow! " : <Spinner />
+        let burger = this.props.error ? "Ingredients can't loaded right now. Please try again." : <Spinner />
         let orderSummry = <Spinner />
         if (this.props.ingredients) {
             burger = (
@@ -110,6 +110,7 @@ const mapStateToProps = (state) => {
     return {
         ingredients: state.ingredients,
         price: state.price,
+        error : state.isError
     }
 }
 const mapDispatchToProps = (dispatch) => ({

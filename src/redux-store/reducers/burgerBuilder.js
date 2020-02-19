@@ -3,6 +3,7 @@ const INGREDEINTS_PRICE = { meat: 1.3, bacon: 0.7, cheese: 0.5, salad: 0.3, pane
 const initState = {
     ingredients: null,
     price: 4.0,
+    isError: false
 
 }
 const burgerReducer = (state = initState, action) => {
@@ -26,11 +27,16 @@ const burgerReducer = (state = initState, action) => {
                 price: state.price - INGREDEINTS_PRICE[action.ingType]
             }
 
-            case (actionsList.INIT_INGREDIENTS): 
-            console.log(action,"action")
+        case (actionsList.INIT_INGREDIENTS):
+            console.log(action, "action")
             return {
                 ...state,
-                ingredients : action.ings
+                ingredients: action.ings
+            }
+        case (actionsList.INIT_INGREDIENTS_FAILED):
+            return {
+                ...state,
+                isError: true
             }
 
         default:
