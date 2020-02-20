@@ -20,8 +20,8 @@ const logger = store => {
         return action => {
             // console.log("[Middleware] Dispatching","logger")
             const result = next(action)
-            const state = store.getState()
-            // console.log(state, "logger")
+                // const state = store.getState()
+                // console.log(state, "logger")
             return result
         }
     }
@@ -30,12 +30,15 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(logger, thunk)));
 
 
-const app = (
-    <Provider store={store}>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
-    </Provider>
+const app = ( <
+    Provider store = { store } >
+    <
+    BrowserRouter >
+    <
+    App / >
+    <
+    /BrowserRouter> <
+    /Provider>
 )
 
 ReactDOM.render(app, document.getElementById('root'));

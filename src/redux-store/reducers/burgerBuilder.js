@@ -28,7 +28,6 @@ const burgerReducer = (state = initState, action) => {
             }
 
         case (actionsList.INIT_INGREDIENTS):
-            console.log('action', action.ings)
             return {
                 ...state,
                 ingredients: {

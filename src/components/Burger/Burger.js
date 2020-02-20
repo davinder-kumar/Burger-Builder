@@ -2,7 +2,6 @@ import React from 'react'
 import classes from './Burger.module.css'
 import BurgerIngredient from './BurgerIngredient/BurgerIngredient'
 const burger = props => {
-    console.log(props.ingredients,"BC")
     
     let transformeding = Object.keys(props.ingredients)
         .map(keyIng => {

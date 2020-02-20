@@ -1,21 +1,19 @@
 import * as actionTypes from './actionTypes'
 import axois from '../../axios-orders'
 
-export const SetOrderLoading = () =>{
-    alert("dsads")
+export const SetOrderLoading = () => {
     return {
-        type : actionTypes.SET_ORDER_LOADING
+        type: actionTypes.SET_ORDER_LOADING
     }
 }
 
 export const burderOrderInit = (orderData) => {
     return dispatch => {
-        alert("dsa")
         dispatch(SetOrderLoading())
         axois.post('/orders.json', orderData)
             .then(response => {
                 console.log(response);
-                dispatch(burderOrderSuccess(response));
+                dispatch(burderOrderSuccess(response.data.name, orderData));
             })
             .catch(error => {
                 console.log(error);
@@ -25,15 +23,21 @@ export const burderOrderInit = (orderData) => {
 
 }
 
-export const burderOrderSuccess = response => {
+export const burderOrderSuccess = (id,orderData) => {
     return {
         type: actionTypes.BURGER_ORDER_SUCCESS,
-        response : response
+        id: id,
+        orderData : orderData
     }
 }
 export const burderOrderFail = error => {
     return {
         type: actionTypes.BURGER_ORDER_FAIL,
-        response : error
+        response: error
+    }
+}
+export const purchaseInit = () =>{
+    return {
+        type : actionTypes.PURCHASE_INIT
     }
 }

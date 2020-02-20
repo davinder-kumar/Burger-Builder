@@ -9,7 +9,6 @@ import Spinner from '../../components/UI/Spinner/Spinner'
 import WithErrorHandler from '../../hoc/WithErrorHandler/WithErrorHandler'
 import { connect } from 'react-redux'
 import * as actionsList from '../../redux-store/actions/index'
-import { addIngrediant, removeIngredient, initIngredients } from '../../redux-store/actions/index'
 class BurgerBuilder extends Component {
     state = {
         isPurchasable: false,
@@ -66,7 +65,6 @@ class BurgerBuilder extends Component {
         let burger = this.props.error ? "Ingredients can't loaded right now. Please try again." : <Spinner />
         let orderSummry = <Spinner />
         if (this.props.ingredients) {
-            console.log(this.props.ingredients,"MYINGS")
             burger = (
                 <Aux>
                     <Burger ingredients={this.props.ingredients} />
