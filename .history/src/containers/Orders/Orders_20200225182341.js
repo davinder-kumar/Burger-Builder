@@ -44,7 +44,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         loadOrders: () => dispatch(actions.loadOrders()),
-        deleteOrder: (orderID) =>  dispatch(actions.deleteOrder(orderID))
+        deleteOrder: (orderID) =>  dispatch(actions.deleteOrder(orderID));
         
 
     }
