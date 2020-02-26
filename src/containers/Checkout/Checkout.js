@@ -4,9 +4,6 @@ import ContactData from './ContactData/ContactData'
 import { Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 class Checkout extends Component {
-
-
-
     cancelHandler = () => {
         this.props.history.goBack()
     }

@@ -1,71 +1,113 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import Input from '../../components/UI/Forms/Input/Input'
+import Button from '../../components/UI/Button/Button'
+import classes from './Auth.module.css'
+import { auth } from '../Auth/Redux/actions'
 class Auth extends Component {
     state = {
         controls: {
             'email': {
-                elementType : "input",
-                elementConfig : {
-                    type : "text",
-                    placeholder : "Email"
+                elementType: "input",
+                elementConfig: {
+                    type: "text",
+                    placeholder: "Email"
                 },
-                validation : {
+                validation: {
                     isEmail: true,
-                    required : true
+                    required: true
                 },
-                touched : false,
-                value : ''
+                touched: false,
+                value: '',
+                isValid: false,
             },
             'password': {
-                elementType : "input",
-                elementConfig : {
-                    type : "password",
-                    placeholder : "Email"
+                elementType: "input",
+                elementConfig: {
+                    type: "password",
+                    placeholder: "Password"
                 },
-                validation : {
-                    isEmail: true,
-                    required : true
+                validation: {
+                    required: true
                 },
-                touched : false,
-                value : ''
+                touched: false,
+                value: '',
+                isValid: false,
             }
         }
     }
 
-    onChangeHandler = () => {
-        alert()
+    onChangeHandler = (e, controlName) => {
+        const updatedForm = { ...this.state.controls }
+        const updatedElement = { ...updatedForm[controlName] }
+        const value = e.target.value
+        const isValid = this.checkValidity(value, updatedForm[controlName].validation)
+        updatedElement.value = value
+        updatedElement.touched = true
+        updatedElement.isValid = isValid
+        updatedForm[controlName] = updatedElement
+
+        this.setState({
+            controls: updatedForm
+        })
     }
 
-    render(){
-        const form =[]
-        for(let i in this.state.controls){
-            console.log(this.state.controls[i])
+    checkValidity = (value, rules) => {
+        let isValid = true
+        if (!rules) {
+            return true;
+        }
+        if (rules.required) {
+            isValid = value.trim() !== '' && isValid
+        }
+        if (rules.isEmail) {
+            var re = /\S+@\S+\.\S+/;
+            isValid = re.test(value) && isValid
+        }
+
+        return isValid
+
+    }
+
+    onSubmitHandler = (e) => {
+        e.preventDefault()
+        this.props.onAuth(this.state.controls.email.value,this.state.controls.password.value)
+    }
+
+    render() {
+        const form = []
+        for (let i in this.state.controls) {
             form.push(
-                <Input key={i} 
-                elementtype={this.state.controls[i].elementType}
-                value ={this.state.controls[i].value}
-                elementconfig = {this.state.controls[i].elementConfig}
-                clicked={() => this.onChangeHandler()}
-                shouldValidate = {this.state.controls[i].validation}
-                
+                <Input key={i}
+                    elementtype={this.state.controls[i].elementType}
+                    value={this.state.controls[i].value}
+                    elementconfig={this.state.controls[i].elementConfig}
+                    clicked={(e) => this.onChangeHandler(e, i)}
+                    shouldValidate={this.state.controls[i].validation}
+                    isValid={this.state.controls[i].isValid}
+                    touched={this.state.controls[i].touched}
                 />
             );
         }
-        console.log(form)
+        // console.log(form)
         // const form = this.state.controls.map(element => {
         //     console.log(element)
         // })
-        return(
-            <div>
-
-            
-
+        return (
+            <div className={classes.Auth}>
                 <form>
                     {form}
+                    <Button clicked={(e) => this.onSubmitHandler(e)} btnType="Success">SUBMIT</Button>
                 </form>
             </div>
         )
     }
 }
 
-export default Auth;
+export const mapDispatchToProps = (dispatch) => {
+    return {
+        onAuth: (email, password) => dispatch(auth(email, password))
+    }
+}
+
+export default connect(null,mapDispatchToProps)(Auth);
