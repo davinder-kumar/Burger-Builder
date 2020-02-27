@@ -18,7 +18,7 @@ class Orders extends Component {
     }
 
     componentDidMount() {
-        this.props.loadOrders();
+        this.props.loadOrders(this.props.token);
     }
     render() {
         let orderss = this.props.orders.map(order => (
@@ -39,11 +39,12 @@ const mapStateToProps = (state) => {
     return {
         orders: state.order.orders,
         loading: state.order.loading,
+        token : state.auth.token
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        loadOrders: () => dispatch(actions.loadOrders()),
+        loadOrders: (token) => dispatch(actions.loadOrders(token)),
         deleteOrder: (orderID) =>  dispatch(actions.deleteOrder(orderID))
         
 

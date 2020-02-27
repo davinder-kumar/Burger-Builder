@@ -88,7 +88,6 @@ class Auth extends Component {
     }
 
     render() {
-        
         let form = []
         for (let i in this.state.controls) {
             form.push(
@@ -104,7 +103,7 @@ class Auth extends Component {
             );
         }
         if(this.props.loading){
-            form = [<Spinner />] 
+            form = [<Spinner key="1"/>] 
         }
 
         return (

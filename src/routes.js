@@ -3,5 +3,6 @@ export default {
     checkout : '/checkout',
     auth: '/auth',
     orders : '/orders',
-    contactUs : '/contact-us'
+    contactUs : '/contact-us',
+    logout : "/auth/logout"
 }

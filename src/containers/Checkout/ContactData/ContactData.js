@@ -108,7 +108,7 @@ class ContactData extends Component {
             orderData: orderData
 
         }
-        this.props.burderOrderInit(order);
+        this.props.burderOrderInit(order,this.props.token);
         // burderOrderInit
         // console.log(order)
 
@@ -197,13 +197,14 @@ const mapStateToProps =(state) =>{
     return{
         ingredients : state.burgerBuilder.ingredients,
         price : state.burgerBuilder.price,
-        loading: state.order.loading
+        loading: state.order.loading,
+        token : state.auth.token
     }
 }
 
 const mapDispathToProps = (dispatch) =>{
     return {
-        burderOrderInit : (orderData) =>dispatch(actionTypes.burderOrderInit(orderData))
+        burderOrderInit : (orderData,token) =>dispatch(actionTypes.burderOrderInit(orderData,token))
     }
 }
 

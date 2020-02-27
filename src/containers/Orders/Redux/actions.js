@@ -8,10 +8,10 @@ export const SetOrderLoading = () => {
     }
 }
 
-export const burderOrderInit = (orderData) => {
+export const burderOrderInit = (orderData,token) => {
     return dispatch => {
         dispatch(SetOrderLoading())
-        axois.post('/orders.json', orderData)
+        axois.post('/orders.json?auth='+token, orderData)
             .then(response => {
                 // console.log(response);
                 dispatch(burderOrderSuccess(response.data.name, orderData));
@@ -42,11 +42,10 @@ export const purchaseInit = () => {
     }
 }
 
-export const loadOrders = () => {
-    console.log("[loadOrders]")
+export const loadOrders = (token) => {
     return (dispatch) => {
         dispatch(setOrdersLoadLoading());
-        axois.get("orders.json")
+        axois.get("orders.json?auth="+token)
             .then((res) => {
                 const orders = []
                 for (let i in res.data) {

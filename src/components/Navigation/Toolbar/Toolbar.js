@@ -12,7 +12,7 @@ const toolbar = (props) => {
                 <BurgerLogo />
             </div>
             <nav>
-                <NavigationItems />
+                <NavigationItems isAuth={props.isAuth} />
             </nav>
         </header>
     );
