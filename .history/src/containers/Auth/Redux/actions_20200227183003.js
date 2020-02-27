@@ -23,7 +23,7 @@ export const checkExpireTime = (expireTime) => {
     return dispatch => { 
         setTimeout(() => {
             dispatch(logoutUser());
-        }, expireTime * 1000)
+        }, expireTime )
     }
 }
 

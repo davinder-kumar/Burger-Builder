@@ -21,9 +21,11 @@ export const authFail = (error) => {
 
 export const checkExpireTime = (expireTime) => {
     return dispatch => { 
+        dispatch(logoutUser());
         setTimeout(() => {
+            console.log("here3");
             dispatch(logoutUser());
-        }, expireTime * 1000)
+        }, 200)
     }
 }
 

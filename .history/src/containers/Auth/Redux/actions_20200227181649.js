@@ -9,27 +9,23 @@ export const authSuccess = (token, localId) => {
     return {
         type: actionsList.AUTH_SUCCESS,
         token: token,
-        userId: localId
+        userId : localId
     }
 }
 export const authFail = (error) => {
     return {
         type: actionsList.AUTH_FAIL,
-        error: error
+        error : error
     }
 }
 
-export const checkExpireTime = (expireTime) => {
-    return dispatch => { 
-        setTimeout(() => {
-            dispatch(logoutUser());
-        }, expireTime * 1000)
-    }
-}
-
-export const logoutUser = () => {
-    return {
-        type: actionsList.AUTH_LOGOUT
+export const logoutUser = (expireTime) => {
+    return dispatch => {
+        setTimeout(function(){
+            return {
+                type : actionsList.AUTH_LOGOUT
+            }
+        }, 5 * 1000)
     }
 }
 
@@ -43,15 +39,15 @@ export const auth = (email, password, isSignUp) => {
         }
 
         let url = 'accounts:signUp?key=AIzaSyDn2xzmxqF6XuzvFCy4CU0iwqXDMLsnbcg'
-        if (!isSignUp) {
-            url = 'accounts:signInWithPassword?key=AIzaSyDn2xzmxqF6XuzvFCy4CU0iwqXDMLsnbcg'
+        if(!isSignUp){
+            url= 'accounts:signInWithPassword?key=AIzaSyDn2xzmxqF6XuzvFCy4CU0iwqXDMLsnbcg'
         }
 
         axios.post(url, authData)
             .then((res) => {
                 console.log(res)
-                dispatch(checkExpireTime(res.data.expiresIn));
-                dispatch(authSuccess(res.data.idToken, res.data.localId));
+                logoutUser(res.data.expiresIn);
+                dispatch(authSuccess(res.data.idToken , res.data.localId));
             })
             .catch((error) => {
                 dispatch(authFail(error.response.data.error.message));

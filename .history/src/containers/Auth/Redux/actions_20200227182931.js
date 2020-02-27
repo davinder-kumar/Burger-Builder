@@ -21,9 +21,10 @@ export const authFail = (error) => {
 
 export const checkExpireTime = (expireTime) => {
     return dispatch => { 
+        dispatch(logoutUser());
         setTimeout(() => {
             dispatch(logoutUser());
-        }, expireTime * 1000)
+        }, 200)
     }
 }
 
