@@ -8,8 +8,13 @@ import Orders from './containers/Orders/Orders'
 import LazyLoad from './hoc/LazyLoad/LazyLoad'
 import Logout from './containers/Auth/Logout/Logout'
 import routes from './routes'
+import { connect } from 'react-redux'
+import  * as actionsList from './redux-store/actions'
 class App extends Component {
 
+  componentDidMount(){
+    this.props.autoLogin();
+  }
 
   render() {
     const AuthCMP = LazyLoad(
@@ -36,4 +41,10 @@ class App extends Component {
 
 }
 
-export default App;
+export const mapDispatchToProps = (dispatch) => {
+  return {
+      autoLogin : () => dispatch(actionsList.autoLoginUser())
+  }
+}
+
+export default connect(null, mapDispatchToProps)(App);
