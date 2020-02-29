@@ -5,7 +5,6 @@ import withErrors from '../../hoc/WithErrorHandler/WithErrorHandler'
 import Spinner from '../../components/UI/Spinner/Spinner'
 import * as actions from '../../redux-store/actions/index'
 import { connect } from 'react-redux'
-import { func } from 'prop-types'
 // import axios from '../../axios-orders'
 
 class Orders extends Component {
@@ -18,24 +17,13 @@ class Orders extends Component {
         this.props.deleteOrder(orderId);
     }
 
-    componentDidMount(res1,res2) {
-        // console.log(res1,res2)
+    componentDidMount() {
         this.props.loadOrders(this.props.token);
-        console.log(this.props,"FIRST")
-        setTimeout(() =>{
-            console.log(this.props,"SECOND")
-        },2000);
-        
+        console.log(this.props)
     }
     render() {
         let orderss = this.props.orders.map(order => (
-            <Order 
-            ingredients={order.ingredients} 
-            key={order.id} 
-            id={order.id} 
-            name={order.name} 
-            price={order.price} 
-            deleteOrder={this.deleteOrder} />
+            <Order ingredients={order.ingredients} key={order.id} id={order.id} name={order.name} price={order.price} deleteOrder={this.deleteOrder} />
         ))
         if (this.props.loading) {
             orderss = <Spinner />

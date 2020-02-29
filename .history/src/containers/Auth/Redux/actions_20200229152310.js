@@ -22,7 +22,7 @@ export const authFail = (error) => {
 export const checkExpireTime = (expireTime) => {
     return dispatch => {
         setTimeout(() => {
-
+            
             dispatch(logoutUser());
         }, expireTime * 1000)
     }
@@ -30,8 +30,8 @@ export const checkExpireTime = (expireTime) => {
 
 export const logoutUser = () => {
     localStorage.removeItem("token")
-    localStorage.removeItem("userId")
-    localStorage.removeItem("tokenExpiryTime")
+            localStorage.removeItem("userId")
+            localStorage.removeItem("tokenExpiryTime")
     return {
         type: actionsList.AUTH_LOGOUT
     }
@@ -82,13 +82,13 @@ export const autoLoginUser = () => {
         if (!token) {
             dispatch(logoutUser())
         } else {
-
+            
             const expiryTime = localStorage.getItem("tokenExpiryTime");
             if (new Date(expiryTime) <= new Date()) {
                 dispatch(logoutUser())
             } else {
                 const userId = localStorage.getItem("userId");
-                dispatch(authSuccess(token, userId))
+                dispatch(authSuccess(token,userId))
                 const timeLeft = (new Date(expiryTime).getTime() - new Date().getTime()) / 1000;
                 dispatch(checkExpireTime(timeLeft))
             }

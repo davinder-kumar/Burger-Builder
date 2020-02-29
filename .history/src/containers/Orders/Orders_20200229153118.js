@@ -18,8 +18,7 @@ class Orders extends Component {
         this.props.deleteOrder(orderId);
     }
 
-    componentDidMount(res1,res2) {
-        // console.log(res1,res2)
+    componentDidMount() {
         this.props.loadOrders(this.props.token);
         console.log(this.props,"FIRST")
         setTimeout(() =>{
@@ -33,9 +32,7 @@ class Orders extends Component {
             ingredients={order.ingredients} 
             key={order.id} 
             id={order.id} 
-            name={order.name} 
-            price={order.price} 
-            deleteOrder={this.deleteOrder} />
+            name={order.name} price={order.price} deleteOrder={this.deleteOrder} />
         ))
         if (this.props.loading) {
             orderss = <Spinner />

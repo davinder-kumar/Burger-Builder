@@ -18,8 +18,7 @@ class Orders extends Component {
         this.props.deleteOrder(orderId);
     }
 
-    componentDidMount(res1,res2) {
-        // console.log(res1,res2)
+    componentDidMount() {
         this.props.loadOrders(this.props.token);
         console.log(this.props,"FIRST")
         setTimeout(() =>{

@@ -18,24 +18,17 @@ class Orders extends Component {
         this.props.deleteOrder(orderId);
     }
 
-    componentDidMount(res1,res2) {
-        // console.log(res1,res2)
+    componentDidMount() {
         this.props.loadOrders(this.props.token);
-        console.log(this.props,"FIRST")
+        console.log(this.props)
         setTimeout(() =>{
-            console.log(this.props,"SECOND")
+            console.log(this.props)
         },2000);
         
     }
     render() {
         let orderss = this.props.orders.map(order => (
-            <Order 
-            ingredients={order.ingredients} 
-            key={order.id} 
-            id={order.id} 
-            name={order.name} 
-            price={order.price} 
-            deleteOrder={this.deleteOrder} />
+            <Order ingredients={order.ingredients} key={order.id} id={order.id} name={order.name} price={order.price} deleteOrder={this.deleteOrder} />
         ))
         if (this.props.loading) {
             orderss = <Spinner />
