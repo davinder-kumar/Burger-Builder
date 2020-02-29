@@ -44,7 +44,8 @@ export const initIngs = (state, action) => {
             cheese: action.ings.cheese,
             paneer: action.ings.paneer,
         },
-        price: initState.price
+        price: initState.price,
+        buildingBurger: false
     })
 }
 

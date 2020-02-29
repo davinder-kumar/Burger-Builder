@@ -22,22 +22,13 @@ class BurgerBuilder extends Component {
 
     componentDidMount() {
         this.props.initIngredients();
-        // axois.get("/ingrediants.json")
-        //     .then(response => {
-        //         this.setState({
-        //             ingredients: response.data
-        //         })
-        //     }).catch(error => {
-        //         this.setState({
-        //             isError: true
-        //         })
-        //     })
     }
 
     purchaseHandler = () => {
         if (this.props.isAuth) {
             this.setState({ purchasing: true })
         } else {
+            this.props.setAutuPathUrl(routes.checkout)
             this.props.history.push(routes.auth)
         }
 
@@ -62,7 +53,7 @@ class BurgerBuilder extends Component {
     }
     purchaseContinueHandler = () => {
         this.props.purchaseInit();
-        this.props.history.push("/checkout");
+        this.props.history.push(routes.checkout);
     }
 
     render() {
@@ -120,14 +111,16 @@ const mapStateToProps = (state) => {
         ingredients: state.burgerBuilder.ingredients,
         price: state.burgerBuilder.price,
         error: state.burgerBuilder.isError,
-        isAuth: state.auth.token !== null
+        isAuth: state.auth.token !== null,
+        AuthRedirectPath: state.auth.AuthRedirectPath
     }
 }
 const mapDispatchToProps = (dispatch) => ({
     addIngrediant: (ingType) => dispatch(actionsList.addIngrediant(ingType)),
     removeIngrediant: (ingType) => dispatch(actionsList.removeIngredient(ingType)),
     initIngredients: () => dispatch(actionsList.initIngredients()),
-    purchaseInit: () => dispatch(actionsList.purchaseInit())
+    purchaseInit: () => dispatch(actionsList.purchaseInit()),
+    setAutuPathUrl: (path) => dispatch(actionsList.setAuthRedirectPath(path))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(WithErrorHandler(BurgerBuilder, axois)) 
