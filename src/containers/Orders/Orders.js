@@ -20,7 +20,7 @@ class Orders extends Component {
 
     componentDidMount(res1,res2) {
         // console.log(res1,res2)
-        this.props.loadOrders(this.props.token);
+        this.props.loadOrders(this.props.token, this.props.userId);
         console.log(this.props,"FIRST")
         setTimeout(() =>{
             console.log(this.props,"SECOND")
@@ -52,12 +52,13 @@ const mapStateToProps = (state) => {
     return {
         orders: state.order.orders,
         loading: state.order.loading,
-        token : state.auth.token
+        token : state.auth.token,
+        userId : state.auth.userId
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        loadOrders: (token) => dispatch(actions.loadOrders(token)),
+        loadOrders: (token,userId) => dispatch(actions.loadOrders(token,userId)),
         deleteOrder: (orderID) =>  dispatch(actions.deleteOrder(orderID))
         
 

@@ -42,10 +42,13 @@ export const purchaseInit = () => {
     }
 }
 
-export const loadOrders = (token) => {
+export const loadOrders = (token,userId) => {
+    console.log(userId,"s")
     return (dispatch) => {
         dispatch(setOrdersLoadLoading());
-        axois.get("orders.json?auth="+token)
+        // const urlParam = '?auth='+token+'&orderBy="userId"&equalTo="'+userId+'"'
+        const urlParam = `?auth=${token}&orderBy="userId"&equalTo="${userId}"`
+        axois.get("orders.json"+urlParam)
             .then((res) => {
                 const orders = []
                 for (let i in res.data) {

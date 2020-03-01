@@ -23,7 +23,6 @@ class Checkout extends Component {
                     <Route path={this.props.match.path + routes.contactUs} exact component={ContactData} />
                 </div>
         }
-        // console.log(this.state.ingredients)
         return summary
     }
 }

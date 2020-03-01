@@ -105,14 +105,11 @@ class ContactData extends Component {
         const order = {
             ingredients: this.props.ingredients,
             price: this.props.price,
-            orderData: orderData
+            orderData: orderData,
+            userId : this.props.userId
 
         }
-        this.props.burderOrderInit(order,this.props.token);
-        // burderOrderInit
-        // console.log(order)
-
-        
+        this.props.burderOrderInit(order,this.props.token, this.props.userId);
     }
     onChangeHandler = (event, identifier) => {
         const updatedOrderFrom = { ...this.state.orderForm }
@@ -193,12 +190,13 @@ class ContactData extends Component {
 }
 
 const mapStateToProps =(state) =>{
-    console.log(state)
+    // console.log(state)
     return{
         ingredients : state.burgerBuilder.ingredients,
         price : state.burgerBuilder.price,
         loading: state.order.loading,
-        token : state.auth.token
+        token : state.auth.token,
+        userId : state.auth.userId
     }
 }
 
