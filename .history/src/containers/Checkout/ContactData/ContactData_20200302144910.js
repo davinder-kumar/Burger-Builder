@@ -113,27 +113,25 @@ class ContactData extends Component {
         this.props.burderOrderInit(order, this.props.token, this.props.userId);
     }
     onChangeHandler = (event, identifier) => {
-
-        const updatedElement = updateObject(this.state.orderForm[identifier],
+        const updatedOrderFrom = { ...this.state.orderForm }
+        // const updatedElement = { ...updatedOrderFrom[identifier] }
+        const updatedElement = updateObject(updatedOrderFrom[identifier],
             {
                 value: event.target.value,
-                isValid: this.checkValidity(event.target.value, this.state.orderForm[identifier].validation),
-                touched: true
+                isValid :  this.checkValidity(event.target.value, validation)
             }
         );
-
-        const updatedOrderForm = updateObject(this.state.orderForm,
-            {
-                [identifier]: updatedElement
-            }
-        )
+        updatedElement.value = event.target.value
+        updatedElement.isValid = this.checkValidity(updatedElement.value, updatedElement.validation)
+        updatedElement.touched = true
+        updatedOrderFrom[identifier] = updatedElement
 
         let isFormValidStatus = true
-        for (let i in updatedOrderForm) {
-            isFormValidStatus = updatedOrderForm[i].isValid & isFormValidStatus
+        for (let i in updatedOrderFrom) {
+            isFormValidStatus = updatedOrderFrom[i].isValid & isFormValidStatus
         }
         this.setState({
-            orderForm: updatedOrderForm,
+            orderForm: updatedOrderFrom,
             isFormValid: isFormValidStatus
         })
     }

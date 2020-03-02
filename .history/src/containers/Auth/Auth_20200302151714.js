@@ -56,7 +56,9 @@ class Auth extends Component {
             touched : true,
             // isValid : isValid
         })
-        const updatedForm = updateObject(this.state.controls, {
+        const value = e.target.value
+        const isValid = this.checkValidity(value, updatedForm[controlName].validation)
+        const updatedForm = updateObject(this.state.form, {
             [controlName] : updatedElement
         })
 

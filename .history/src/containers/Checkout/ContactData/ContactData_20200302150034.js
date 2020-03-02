@@ -114,18 +114,18 @@ class ContactData extends Component {
     }
     onChangeHandler = (event, identifier) => {
 
-        const updatedElement = updateObject(this.state.orderForm[identifier],
+        const updatedElement = updateObject(this.state.form[identifier],
             {
                 value: event.target.value,
-                isValid: this.checkValidity(event.target.value, this.state.orderForm[identifier].validation),
+                isValid: this.checkValidity(event.target.value, this.state.form[identifier].validation),
                 touched: true
             }
         );
 
-        const updatedOrderForm = updateObject(this.state.orderForm,
+        const updatedOrderForm = updateObject(this.state.form, 
             {
-                [identifier]: updatedElement
-            }
+            [identifier]: updatedElement
+        }
         )
 
         let isFormValidStatus = true

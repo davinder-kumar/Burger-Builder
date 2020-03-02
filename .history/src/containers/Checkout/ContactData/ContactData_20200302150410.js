@@ -117,12 +117,12 @@ class ContactData extends Component {
         const updatedElement = updateObject(this.state.orderForm[identifier],
             {
                 value: event.target.value,
-                isValid: this.checkValidity(event.target.value, this.state.orderForm[identifier].validation),
+                isValid: this.checkValidity(event.target.value, this.state.form[identifier].validation),
                 touched: true
             }
         );
 
-        const updatedOrderForm = updateObject(this.state.orderForm,
+        const updatedOrderForm = updateObject(this.state.form,
             {
                 [identifier]: updatedElement
             }

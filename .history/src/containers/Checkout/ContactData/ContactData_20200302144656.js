@@ -6,7 +6,7 @@ import Spinner from '../../../components/UI/Spinner/Spinner'
 import Input from '../../../components/UI/Forms/Input/Input'
 import Witherror from '../../../hoc/WithErrorHandler/WithErrorHandler'
 import * as actionTypes from '../../../redux-store/actions/index'
-import { updateObject } from '../../../Utilities/Utility'
+import {updateObject} from '../../../Utilities/Utility'
 import { connect } from 'react-redux'
 class ContactData extends Component {
     state = {
@@ -98,7 +98,7 @@ class ContactData extends Component {
     }
     orderHandler = (event) => {
         event.preventDefault()
-
+       
         const orderData = {}
         for (let formIdentifier in this.state.orderForm) {
             orderData[formIdentifier] = this.state.orderForm[formIdentifier].value
@@ -107,33 +107,28 @@ class ContactData extends Component {
             ingredients: this.props.ingredients,
             price: this.props.price,
             orderData: orderData,
-            userId: this.props.userId
+            userId : this.props.userId
 
         }
-        this.props.burderOrderInit(order, this.props.token, this.props.userId);
+        this.props.burderOrderInit(order,this.props.token, this.props.userId);
     }
     onChangeHandler = (event, identifier) => {
-
-        const updatedElement = updateObject(this.state.orderForm[identifier],
-            {
-                value: event.target.value,
-                isValid: this.checkValidity(event.target.value, this.state.orderForm[identifier].validation),
-                touched: true
-            }
-        );
-
-        const updatedOrderForm = updateObject(this.state.orderForm,
-            {
-                [identifier]: updatedElement
-            }
-        )
+        const updatedOrderFrom = { ...this.state.orderForm }
+        // const updatedElement = { ...updatedOrderFrom[identifier] }
+        const updatedElement = updateObject(updatedOrderFrom[identifier] , 
+            
+            );
+        updatedElement.value = event.target.value
+        updatedElement.isValid = this.checkValidity(updatedElement.value, updatedElement.validation)
+        updatedElement.touched = true
+        updatedOrderFrom[identifier] = updatedElement
 
         let isFormValidStatus = true
-        for (let i in updatedOrderForm) {
-            isFormValidStatus = updatedOrderForm[i].isValid & isFormValidStatus
+        for (let i in updatedOrderFrom) {
+            isFormValidStatus = updatedOrderFrom[i].isValid & isFormValidStatus
         }
         this.setState({
-            orderForm: updatedOrderForm,
+            orderForm: updatedOrderFrom,
             isFormValid: isFormValidStatus
         })
     }
@@ -198,23 +193,23 @@ class ContactData extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps =(state) =>{
     // console.log(state)
-    return {
-        ingredients: state.burgerBuilder.ingredients,
-        price: state.burgerBuilder.price,
+    return{
+        ingredients : state.burgerBuilder.ingredients,
+        price : state.burgerBuilder.price,
         loading: state.order.loading,
-        token: state.auth.token,
-        userId: state.auth.userId
+        token : state.auth.token,
+        userId : state.auth.userId
     }
 }
 
-const mapDispathToProps = (dispatch) => {
+const mapDispathToProps = (dispatch) =>{
     return {
-        burderOrderInit: (orderData, token) => dispatch(actionTypes.burderOrderInit(orderData, token))
+        burderOrderInit : (orderData,token) =>dispatch(actionTypes.burderOrderInit(orderData,token))
     }
 }
 
 // export default connect(mapStateToProps)(Checkout)
 
-export default connect(mapStateToProps, mapDispathToProps)(Witherror(ContactData, axois))
+export default connect(mapStateToProps,mapDispathToProps)(Witherror(ContactData, axois))

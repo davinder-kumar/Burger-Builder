@@ -1,5 +1,5 @@
 import * as actionsList from '../../../redux-store/actionTypes'
-import { updateObject } from '../../../Utilities/Utility'
+import { updateObject } from '../../../'
 const INGREDEINTS_PRICE = { meat: 1.3, bacon: 0.7, cheese: 0.5, salad: 0.3, paneer: 1.0 }
 const initState = {
     ingredients: null,

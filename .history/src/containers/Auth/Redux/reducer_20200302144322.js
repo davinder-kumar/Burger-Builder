@@ -1,5 +1,5 @@
 import * as actionTypes from '../../../redux-store/actionTypes'
-import { updateObject } from '../../../Utilities/Utility'
+import { updateObject } from '../../../'
 
 const initState = {
     userId: null,

@@ -122,7 +122,7 @@ class ContactData extends Component {
             }
         );
 
-        const updatedOrderForm = updateObject(this.state.orderForm,
+        const updatedOrderForm = updateObject(this.state.form,
             {
                 [identifier]: updatedElement
             }
