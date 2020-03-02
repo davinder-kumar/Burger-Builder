@@ -19,6 +19,7 @@ class Orders extends Component {
     }
 
     componentDidMount(res1,res2) {
+        // console.log(res1,res2)
         this.props.loadOrders(this.props.token, this.props.userId);
         
     }

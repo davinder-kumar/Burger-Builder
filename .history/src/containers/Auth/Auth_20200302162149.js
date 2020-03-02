@@ -7,7 +7,7 @@ import Spinner from '../../components/UI/Spinner/Spinner'
 import * as actionsList from '../../redux-store/actions'
 import { Redirect } from 'react-router-dom'
 import routes from '../../routes'
-import { updateObject, checkValidity } from '../../Utilities/Utility'
+import { updateObject,  } from '../../Utilities/Utility'
 class Auth extends Component {
     state = {
         isSignup: true,
@@ -52,7 +52,7 @@ class Auth extends Component {
         // const updatedElement = { ...updatedForm[controlName] }
         const updatedElement = updateObject(this.state.controls[controlName], {
             value: e.target.value,
-            isValid : checkValidity(e.target.value, this.state.controls[controlName].validation),
+            isValid : this.checkValidity(e.target.value, this.state.controls[controlName].validation),
             touched : true,
             // isValid : isValid
         })
@@ -65,6 +65,22 @@ class Auth extends Component {
         })
     }
 
+    checkValidity = (value, rules) => {
+        let isValid = true
+        if (!rules) {
+            return true;
+        }
+        if (rules.required) {
+            isValid = value.trim() !== '' && isValid
+        }
+        if (rules.isEmail) {
+            var re = /\S+@\S+\.\S+/;
+            isValid = re.test(value) && isValid
+        }
+
+        return isValid
+
+    }
 
     onSubmitHandler = (e) => {
         e.preventDefault()

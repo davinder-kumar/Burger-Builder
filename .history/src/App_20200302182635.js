@@ -36,8 +36,8 @@ class App extends Component {
         if (this.props.isAuth) {
             routes_ = (
                 <Switch>
-                    <Route path={routes.checkout} component={asyncCheckout} />
-                    <Route path={routes.orders} component={asyncOrders} />
+                    <Route path={routes.checkout} component={as} />
+                    <Route path={routes.orders} component={Orders} />
                     <Route path={routes.logout} component={Logout} />
                     <Route path={routes.auth} component={asyncAuth} />
                     <Route exact path={routes.home} component={BurgerBuilder} />
@@ -47,7 +47,7 @@ class App extends Component {
         } else {
             routes_ = (
                 <Switch>
-                    <Route path={routes.auth} component={asyncAuth} />
+                    <Route path={routes.auth} component={AuthCMP} />
                     <Route exact path={routes.home} component={BurgerBuilder} />
                     <Redirect to={routes.home} />
                 </Switch>

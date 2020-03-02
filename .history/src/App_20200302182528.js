@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Layout from './hoc/Layout/Layout'
 import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder'
-// import Checkout from './containers/Checkout/Checkout'
+import Checkout from './containers/Checkout/Checkout'
 import { Route, Switch, Redirect } from 'react-router-dom'
-// import Orders from './containers/Orders/Orders'
+import Orders from './containers/Orders/Orders'
 // import Auth from './containers/Auth/Auth'
 import LazyLoad from './hoc/LazyLoad/LazyLoad'
 import Logout from './containers/Auth/Logout/Logout'
@@ -22,22 +22,12 @@ class App extends Component {
                 return import('./containers/Auth/Auth');
             }
         );
-        const asyncOrders = LazyLoad(
-            () => {
-                return import('./containers/Orders/Orders');
-            }
-        );
-        const asyncCheckout = LazyLoad(
-            () => {
-                return import('./containers/Checkout/Checkout');
-            }
-        );
         let routes_ = null
         if (this.props.isAuth) {
             routes_ = (
                 <Switch>
-                    <Route path={routes.checkout} component={asyncCheckout} />
-                    <Route path={routes.orders} component={asyncOrders} />
+                    <Route path={routes.checkout} component={Checkout} />
+                    <Route path={routes.orders} component={Orders} />
                     <Route path={routes.logout} component={Logout} />
                     <Route path={routes.auth} component={asyncAuth} />
                     <Route exact path={routes.home} component={BurgerBuilder} />
@@ -47,7 +37,7 @@ class App extends Component {
         } else {
             routes_ = (
                 <Switch>
-                    <Route path={routes.auth} component={asyncAuth} />
+                    <Route path={routes.auth} component={AuthCMP} />
                     <Route exact path={routes.home} component={BurgerBuilder} />
                     <Redirect to={routes.home} />
                 </Switch>

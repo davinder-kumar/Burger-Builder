@@ -6,7 +6,7 @@ import Spinner from '../../../components/UI/Spinner/Spinner'
 import Input from '../../../components/UI/Forms/Input/Input'
 import Witherror from '../../../hoc/WithErrorHandler/WithErrorHandler'
 import * as actionTypes from '../../../redux-store/actions/index'
-import { updateObject, checkValidity } from '../../../Utilities/Utility'
+import { updateObject,  } from '../../../Utilities/Utility'
 import { connect } from 'react-redux'
 class ContactData extends Component {
     state = {
@@ -117,7 +117,7 @@ class ContactData extends Component {
         const updatedElement = updateObject(this.state.orderForm[identifier],
             {
                 value: event.target.value,
-                isValid: checkValidity(event.target.value, this.state.orderForm[identifier].validation),
+                isValid: this.checkValidity(event.target.value, this.state.orderForm[identifier].validation),
                 touched: true
             }
         );

@@ -47,7 +47,7 @@ class App extends Component {
         } else {
             routes_ = (
                 <Switch>
-                    <Route path={routes.auth} component={asyncAuth} />
+                    <Route path={routes.auth} component={as} />
                     <Route exact path={routes.home} component={BurgerBuilder} />
                     <Redirect to={routes.home} />
                 </Switch>
