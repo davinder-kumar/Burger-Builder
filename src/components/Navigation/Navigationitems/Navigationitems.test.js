@@ -8,8 +8,20 @@ configure({
 })
 
 describe("<Navigation Items >", () => {
+    let wrapper
+    beforeEach(()=>{
+        wrapper = shallow(<NavigationItems />)
+    })
+
     it("should render two navigation item if user is not authenticated",() =>{
-        const wrapper = shallow(<NavigationItems />)
+        // const wrapper = shallow(<NavigationItems />)
         expect( wrapper.find(NavigationItem)).toHaveLength(2)
+    })
+    it("should render three navigation item if user is  authenticated",() =>{
+        // const wrapper = shallow(<NavigationItems isAuth={true} />)
+        wrapper.setProps({
+            isAuth : true
+        })
+        expect( wrapper.find(NavigationItem)).toHaveLength(3)
     })
 })
