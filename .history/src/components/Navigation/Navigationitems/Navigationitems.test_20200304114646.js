@@ -1,36 +1,35 @@
-import { configure, shallow } from "enzyme"
-import Adapter from 'enzyme-adapter-react-16'
+import { configure, shallow  } from "enzyme"
+import Adapter  from 'enzyme-adapter-react-16'
 import NavigationItems from './Navigationitems'
 import NavigationItem from './Navigationitem/Navigationitem'
 import React from 'react'
 import routes from '../../../routes'
 configure({
-    adapter: new Adapter()
+    adapter : new Adapter()
 })
 
 describe("<Navigation Items >", () => {
     let wrapper
-    beforeEach(() => {
+    beforeEach(()=>{
         wrapper = shallow(<NavigationItems />)
     })
 
-    it("should render two navigation item if user is not authenticated", () => {
+    it("should render two navigation item if user is not authenticated",() =>{
         // const wrapper = shallow(<NavigationItems />)
-        expect(wrapper.find(NavigationItem)).toHaveLength(2)
+        expect( wrapper.find(NavigationItem)).toHaveLength(2)
     })
-    it("should render three navigation item if user is  authenticated", () => {
+    it("should render three navigation item if user is  authenticated",() =>{
         // const wrapper = shallow(<NavigationItems isAuth={true} />)
         wrapper.setProps({
-            isAuth: true
+            isAuth : true
         })
-        expect(wrapper.find(NavigationItem)).toHaveLength(3)
+        expect( wrapper.find(NavigationItem)).toHaveLength(3)
     })
 
     it("should contains logout link if auth is true", () => {
         wrapper.setProps({
-            isAuth: true
+            isAuth :true
         })
-        expect(wrapper.contains(<NavigationItem link={routes.logout}>Logout</NavigationItem>)).toEqual(true);
+        expect(wrapper.contains(<NavigationItem link={routes.logout}>Logout</NavigationItem>)).toHaveLength(1)
     })
-
 })

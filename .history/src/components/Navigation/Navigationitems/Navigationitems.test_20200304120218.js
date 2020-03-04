@@ -5,7 +5,7 @@ import NavigationItem from './Navigationitem/Navigationitem'
 import React from 'react'
 import routes from '../../../routes'
 configure({
-    adapter: new Adapter()
+    // adapter: new Adapter()
 })
 
 describe("<Navigation Items >", () => {
