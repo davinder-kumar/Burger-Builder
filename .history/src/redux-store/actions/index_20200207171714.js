@@ -1,1 +1,0 @@
-export { addIngrediant, removeIngredient } from './burgerBuilder'
