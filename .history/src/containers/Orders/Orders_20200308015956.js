@@ -15,7 +15,7 @@ class Orders extends Component {
         price: null
     }
     deleteOrder = (orderId) => {
-        this.props.deleteOrder(orderId, this.props.token, this.props.userId);
+        this.props.deleteOrder(orderId, this.props.token);
     }
 
     componentDidMount(res1,res2) {
@@ -54,7 +54,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         loadOrders: (token,userId) => dispatch(actions.loadOrders(token,userId)),
-        deleteOrder: (orderID,token,userId) =>  dispatch(actions.deleteOrder(orderID,token,userId))
+        deleteOrder: (orderID,token) =>  dispatch(actions.deleteOrder(orderID,token))
     }
 }
 

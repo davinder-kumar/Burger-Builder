@@ -1,4 +1,6 @@
 import * as actionTypes from '../../../redux-store/actionTypes'
+import axois from '../../../axios-orders'
+// import axios from 'axios'
 
 export const SetOrderLoading = () => {
     return {
@@ -6,11 +8,18 @@ export const SetOrderLoading = () => {
     }
 }
 
-export const burderOrderInit = (orderData, token) => {
-    return {
-        type: actionTypes.BURGER_ORDER_INIT_SAGA,
-        orderData: orderData,
-        token: token
+export const burderOrderInit = (orderData,token) => {
+    return dispatch => {
+        dispatch(SetOrderLoading())
+        axois.post('/orders.json?auth='+token, orderData)
+            .then(response => {
+                // console.log(response);
+                dispatch(burderOrderSuccess(response.data.name, orderData));
+            })
+            .catch(error => {
+                // console.log(error);
+                dispatch(burderOrderFail(error));
+            })
     }
 
 }
@@ -33,14 +42,12 @@ export const purchaseInit = () => {
     }
 }
 
-export const loadOrders = (token, userId) => {
-    return {
-        type: actionTypes.LOAD_ORDERS_SAGA,
-        token: token,
-        userId: userId
+export const loadOrders = (token,userId) => {
+    return{
+        
     }
 }
-
+}
 
 export const loadOrderSuccess = (orders) => {
     return {
@@ -61,22 +68,28 @@ export const setOrdersLoadLoading = () => {
 }
 
 
-export const deleteOrder = (orderID,token,userId) => {
-    return {
-        type: actionTypes.DELETE_ORDER_SAGA,
-        orderID: orderID,
-        token : token,
-        userId: userId
-        
+export const deleteOrder = (orderID) => {
+    return dispatch => {
+        dispatch(setOrdersLoadLoading())
+        axois.delete(`/orders/${orderID}.json`)
+            .then(function (res) {
+                dispatch(deleteOrderSuccess(res));
+                dispatch(loadOrders())
+
+            })
+            .catch(function (error) {
+                dispatch(deleteOrderFail(error))
+            })
+
     }
 }
-export const deleteOrderSuccess = (res) => {
+const deleteOrderSuccess = (res) => {
     return {
         type: actionTypes.DELETE_ORDER_SUCCESS,
         res: res
     }
 }
-export const deleteOrderFail = (error) => {
+const deleteOrderFail = (error) => {
     return {
         type: actionTypes.DELETE_ORDER_FAIL,
         error: error

@@ -53,27 +53,12 @@ export const auth = (email, password, isSignUp) => {
         isSignUp: isSignUp
 
     }
-    
-
 }
 
 export const autoLoginUser = () => {
-    return dispatch => {
-        const token = localStorage.getItem("token");
-        if (!token) {
-            dispatch(logoutUser())
-        } else {
-
-            const expiryTime = localStorage.getItem("tokenExpiryTime");
-            if (new Date(expiryTime) <= new Date()) {
-                dispatch(logoutUser())
-            } else {
-                const userId = localStorage.getItem("userId");
-                dispatch(authSuccess(token, userId))
-                const timeLeft = (new Date(expiryTime).getTime() - new Date().getTime()) / 1000;
-                dispatch(checkExpireTime(timeLeft))
-            }
-        }
-
+    return {
+        type: actionsList.AUTO_LOGIN_USER_START
     }
+
+    
 }

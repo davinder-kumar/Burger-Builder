@@ -11,7 +11,7 @@ import authReducer from './containers/Auth/Redux/reducer'
 import createSagaMiddleware from 'redux-saga'
 import thunk from 'redux-thunk'
 import * as serviceWorker from './serviceWorker';
-import watcherAuth from './redux-store/sagas-watcher'
+import { watchAuth, watchBurgerBuilder, watchOrder } from './redux-store/sagas-watcher'
 const rootReducer = combineReducers({
     burgerBuilder: reducer,
     order: orderReducer,
@@ -34,7 +34,9 @@ const logger = store => {
 const composeEnhancers = process.env.NODE_ENV === 'development' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : compose;
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(logger, thunk, sagaMiddleware)));
 
-sagaMiddleware.run(watcherAuth)
+sagaMiddleware.run(watchAuth)
+sagaMiddleware.run(watchBurgerBuilder)
+sagaMiddleware.run(watchOrder)
 
 const app = (<Provider store={store} >
     <BrowserRouter >

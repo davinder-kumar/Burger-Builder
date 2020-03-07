@@ -1,4 +1,6 @@
 import * as actionTypes from '../../../redux-store/actionTypes'
+import axois from '../../../axios-orders'
+// import axios from 'axios'
 
 export const SetOrderLoading = () => {
     return {
@@ -61,13 +63,11 @@ export const setOrdersLoadLoading = () => {
 }
 
 
-export const deleteOrder = (orderID,token,userId) => {
+export const deleteOrder = (orderID,token) => {
     return {
         type: actionTypes.DELETE_ORDER_SAGA,
         orderID: orderID,
-        token : token,
-        userId: userId
-        
+        token : token
     }
 }
 export const deleteOrderSuccess = (res) => {

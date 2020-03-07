@@ -9,21 +9,16 @@ import Spinner from '../../components/UI/Spinner/Spinner'
 import WithErrorHandler from '../../hoc/WithErrorHandler/WithErrorHandler'
 import { connect } from 'react-redux'
 import * as actionsList from '../../redux-store/actions/index'
-// import { Redirect } from 'react-router-dom'
 import routes from '../../routes'
 export class BurgerBuilder extends Component {
     state = {
         isPurchasable: false,
         purchasing: false,
         loading: false,
-
-
     }
-
     componentDidMount() {
         this.props.initIngredients();
     }
-
     purchaseHandler = () => {
         if (this.props.isAuth) {
             this.setState({ purchasing: true })
@@ -31,14 +26,11 @@ export class BurgerBuilder extends Component {
             this.props.setAutuPathUrl(routes.checkout)
             this.props.history.push(routes.auth)
         }
-
     }
-
     updatePurchaseState = () => {
         const Ingredients = {
             ...this.props.ingredients
         }
-
         const IngCount = Object.keys(Ingredients).map(Ing => {
             return Ingredients[Ing]
         }).reduce((prevVal, newVal) => {
@@ -55,7 +47,6 @@ export class BurgerBuilder extends Component {
         this.props.purchaseInit();
         this.props.history.push(routes.checkout);
     }
-
     render() {
         const disabledInfo = { ...this.props.ingredients }
         for (const key in disabledInfo) {

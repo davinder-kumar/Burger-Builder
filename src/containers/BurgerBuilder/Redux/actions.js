@@ -1,5 +1,4 @@
 import * as actionTypes from '../../../redux-store/actionTypes'
-import axois from '../../../axios-orders'
 
 export const addIngrediant = (ingType) => {
     return {
@@ -15,16 +14,8 @@ export const removeIngredient = (ingType) => {
 }
 
 export const initIngredients = () => {
-    return dispatch => {
-
-        axois.get("/ingrediants.json")
-            .then(response => {
-                dispatch(initIngredientsRef(response.data))
-            }).catch(error => {
-                dispatch(initIngredientsFailed())
-            })
-
-
+    return {
+        type : actionTypes.INIT_INGS_START_SAGA
     }
 }
 export const initIngredientsRef = (ings) => {
