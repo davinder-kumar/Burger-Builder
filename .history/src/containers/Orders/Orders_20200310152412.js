@@ -5,6 +5,7 @@ import withErrors from '../../hoc/WithErrorHandler/WithErrorHandler'
 import Spinner from '../../components/UI/Spinner/Spinner'
 import * as actions from '../../redux-store/actions/index'
 import { connect } from 'react-redux'
+import {useHttp} from '../../hooks/hook-http-error'
 // import { func } from 'prop-types'
 // import axios from '../../axios-orders'
 
@@ -12,10 +13,10 @@ const Orders = (props) => {
     const deleteOrder = (orderId) => {
         props.deleteOrder(orderId, props.token, props.userId);
     }
-    const {loadOrders,token,userId} = props.loadOrders
+
     useEffect(() =>{
-        loadOrders(token, userId);
-    },[loadOrders,token,userId])
+        props.loadOrders(props.token, props.userId);
+    },[])
         let orderss = props.orders.map(order => (
             <Order
                 ingredients={order.ingredients}

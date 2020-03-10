@@ -46,7 +46,7 @@ const Auth = props => {
         if (!buildingBurger && AuthRedirectPath !== routes.home) {
             onSetAuthPath("/");
         }
-    }, [onSetAuthPath,buildingBurger,AuthRedirectPath])
+    }, [])
 
 
     const onChangeHandler = (e, controlName) => {

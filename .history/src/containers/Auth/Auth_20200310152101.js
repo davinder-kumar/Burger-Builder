@@ -41,12 +41,12 @@ const Auth = props => {
             }
     })
 
-    const {buildingBurger,AuthRedirectPath,onSetAuthPath} = props
+    const {buildingBurger,AuthRedirectPath,onSetAuthPath}
     useEffect(() => {
-        if (!buildingBurger && AuthRedirectPath !== routes.home) {
-            onSetAuthPath("/");
+        if (!props.buildingBurger && props.AuthRedirectPath !== routes.home) {
+            props.onSetAuthPath("/");
         }
-    }, [onSetAuthPath,buildingBurger,AuthRedirectPath])
+    }, [])
 
 
     const onChangeHandler = (e, controlName) => {

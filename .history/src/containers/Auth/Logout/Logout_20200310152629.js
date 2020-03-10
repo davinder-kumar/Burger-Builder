@@ -6,8 +6,8 @@ import routes from '../../../routes'
 const Logout = props => {
     const {logoutUser} = props
     useEffect(()=>{
-        logoutUser()
-    },[logoutUser])
+        props.logoutUser()
+    },[props.logoutUser])
     
         return (
             <Redirect to={routes.home} />

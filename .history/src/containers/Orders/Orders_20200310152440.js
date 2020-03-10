@@ -12,10 +12,10 @@ const Orders = (props) => {
     const deleteOrder = (orderId) => {
         props.deleteOrder(orderId, props.token, props.userId);
     }
-    const {loadOrders,token,userId} = props.loadOrders
+    const {loadOrders} = props.loadOrders
     useEffect(() =>{
-        loadOrders(token, userId);
-    },[loadOrders,token,userId])
+        props.loadOrders(props.token, props.userId);
+    },[])
         let orderss = props.orders.map(order => (
             <Order
                 ingredients={order.ingredients}

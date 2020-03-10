@@ -17,7 +17,7 @@ export const BurgerBuilder = props => {
     const {initIngredients} = props
     useEffect(()=>{
         initIngredients();
-    },[initIngredients]) 
+    },[]) 
 
     const purchaseHandler = () => {
         if (props.isAuth) {

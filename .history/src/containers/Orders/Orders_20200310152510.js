@@ -14,7 +14,7 @@ const Orders = (props) => {
     }
     const {loadOrders,token,userId} = props.loadOrders
     useEffect(() =>{
-        loadOrders(token, userId);
+        loadOrders(props.token, props.userId);
     },[loadOrders,token,userId])
         let orderss = props.orders.map(order => (
             <Order

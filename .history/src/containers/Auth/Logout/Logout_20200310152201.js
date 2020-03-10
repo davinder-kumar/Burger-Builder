@@ -4,10 +4,9 @@ import { Redirect } from 'react-router-dom'
 import * as actionsList from '../../../redux-store/actions'
 import routes from '../../../routes'
 const Logout = props => {
-    const {logoutUser} = props
     useEffect(()=>{
-        logoutUser()
-    },[logoutUser])
+        props.logoutUser()
+    },[])
     
         return (
             <Redirect to={routes.home} />
