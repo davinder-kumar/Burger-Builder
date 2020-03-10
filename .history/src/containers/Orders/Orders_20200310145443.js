@@ -12,10 +12,10 @@ import {useHttp} from '../../hooks/hook-http-error'
 const Orders = (props) => {
     const [error] = useHttp(axios)
 
-    // useEffect(()=>{
-    //     if(error)
-    //     console.log(error)
-    // },[error])
+    useEffect(()=>{
+        if(error)
+        console.log(error.message)
+    },[error])
     
     const deleteOrder = (orderId) => {
         props.deleteOrder(orderId, props.token, props.userId);
@@ -58,4 +58,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withErrors(Orders, axios))
+export default connect(mapStateToProps, mapDispatchToProps)(Orders, axios)

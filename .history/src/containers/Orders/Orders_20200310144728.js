@@ -10,12 +10,7 @@ import {useHttp} from '../../hooks/hook-http-error'
 // import axios from '../../axios-orders'
 
 const Orders = (props) => {
-    const [error] = useHttp(axios)
-
-    // useEffect(()=>{
-    //     if(error)
-    //     console.log(error)
-    // },[error])
+    
     
     const deleteOrder = (orderId) => {
         props.deleteOrder(orderId, props.token, props.userId);

@@ -5,7 +5,7 @@ import {useHttp} from '../../hooks/hook-http-error'
 const withErrorHandler = (WrappedEle, axios) => {
     return props => {
         const [error, CloseErrorHandler] = useHttp(axios)
-            return (
+        return (
             <Aux>
                 <Modal show={error} modelClosed={CloseErrorHandler}>
                     {error ? error.message : null}
